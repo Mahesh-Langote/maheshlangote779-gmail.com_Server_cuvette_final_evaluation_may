@@ -12,6 +12,8 @@ const chatbotController = require('./controllers/chatbotController.js');
 
 const app = express();
 const serverStartTime = new Date();
+app.set('views', path.join(__dirname, 'views'));
+
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
