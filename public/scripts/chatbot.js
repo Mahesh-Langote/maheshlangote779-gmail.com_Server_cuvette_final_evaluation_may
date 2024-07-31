@@ -57,7 +57,7 @@ function askNextQuestion(index) {
   if (form && form.fields && index < form.fields.length) {
     const field = form.fields[index];
     const requiredText = field.required ? ' (Required)' : ' (Optional)';
-    addMessage('bot', field.label + requiredText, field.type, field.options);
+    addMessage('bot', field.errorMessage + requiredText, field.type, field.options);
     renderInput(field);
     currentFieldIndex = index;
   } else if (form && index === form.fields.length) {
