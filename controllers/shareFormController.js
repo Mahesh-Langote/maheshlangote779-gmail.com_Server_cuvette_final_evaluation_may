@@ -14,9 +14,9 @@ exports.shareForm = async (req, res) => {
       form.shareableLink = formId; // Use formId as the shareable link
       await form.save();
     }
-    const clientURL = process.env.CLIENT_URL || 'http://localhost:5173';
+    const clientURL = process.env.CLIENT_URL || 'https://maheshlangote779-git-39ba27-maheshlangote777-gmailcoms-projects.vercel.app';
 
-    res.json({ shareableLink: `${clientURL}/api/forms/public/${form.shareableLink}` });
+    res.json({ shareableLink: `${clientURL}/chat/${form.shareableLink}` });
   } catch (error) {
     console.error('Error sharing form:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
