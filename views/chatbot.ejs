@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="/styles/chatbot.css">
+</head>
+<body>
+    <div id="chatBot-wrapper" class="chatBot-wrapper light">
+        <div class="chatBot-container">
+            <div id="chatBot-messages" class="chatBot-messages"></div>
+            <form id="chatBot-input-form" class="chatBot-input-form">
+                <div id="chatBot-input-container"></div>
+                <div class="chatBot-button-group">
+                    <button type="button" id="chatBot-skip-button" class="chatBot-skip-button" style="display: none;">Skip</button>
+                    <button type="submit" class="chatBot-send-button">
+                        <span class="chatBot-send-icon">▶</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const formId = '<%= formId %>';
+    </script>
+    <script src="/scripts/chatbot.js"></script>
+</body>
+</html>
