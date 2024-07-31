@@ -14,8 +14,21 @@ const app = express();
 const serverStartTime = new Date();
 app.set('views', path.join(__dirname, 'views'));
 
+app.use('/styles', express.static('public/styles', { 
+  setHeaders: (res, path) => {
+    res.setHeader('Content-Type', 'text/css');
+  }
+}));
+
+app.use('/scripts', express.static('public/scripts', {
+  setHeaders: (res, path) => {
+    res.setHeader('Content-Type', 'application/javascript');
+  }
+}));
+
 
 app.set('view engine', 'ejs');
+
 app.use(express.static('public'));
 app.use(cors());
 app.use(helmet({
