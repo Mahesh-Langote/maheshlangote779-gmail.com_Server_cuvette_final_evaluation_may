@@ -42,15 +42,15 @@ app.use(helmet({
 }));
 app.use(express.json());
 
-// Logging middleware
-app.use((req, res, next) => {
-  const start = Date.now();
-  res.on('finish', () => {
-    const duration = Date.now() - start;
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl} - ${res.statusCode} ${duration}ms`);
-  });
-  next();
-});
+// // Logging middleware
+// app.use((req, res, next) => {
+//   const start = Date.now();
+//   res.on('finish', () => {
+//     const duration = Date.now() - start;
+//     console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl} - ${res.statusCode} ${duration}ms`);
+//   });
+//   next();
+// });
 
 // Chatbot routes
 app.get('/chat/:formId', chatbotController.renderChatbot);
@@ -69,6 +69,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/serverison', (req, res) => {
+  const now = new Date();
+  const uptime = now - serverStartTime; 
+  const days = Math.floor(uptime / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((uptime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((uptime % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((uptime % (1000 * 60)) / 1000);
+
   const formattedDate = serverStartTime.toLocaleString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -79,7 +86,9 @@ app.get('/serverison', (req, res) => {
     second: '2-digit',
     timeZoneName: 'short'
   });
-  res.send(`Server running since ${formattedDate}`);
+
+  res.send(`Server running since ${formattedDate}<br>
+            Uptime: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`);
 });
 
 app.use('/api/auth', authRoutes);
